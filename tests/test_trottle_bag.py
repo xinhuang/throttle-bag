@@ -16,7 +16,7 @@ class ApiObj(object):
         calls.append(now())
 
 
-class ThrottleBagTestSuite(unittest.TestCase):
+class ThrottleTestSuite(unittest.TestCase):
     def setUp(self):
         global calls
         calls = []
@@ -28,7 +28,7 @@ class ThrottleBagTestSuite(unittest.TestCase):
             self.assertLess(interval, t1 - t0)
 
     def test_given_1_obj_by_throttle_by_10ms(self):
-        sut = Throttler(ApiObj(), seconds=0.01)
+        sut = Throttle(ApiObj(), seconds=0.01)
 
         [sut.foo() for i in range(1, 5)]
 
