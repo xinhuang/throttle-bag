@@ -28,10 +28,11 @@ Quick Tutorial
 .. code:: pycon
 
   >>> from throttle_bag import Throttle
+  >>> import requests
   >>>
-  >>> api = Throttle(ThrottledServer(), seconds=10, times=20)
+  >>> r = Throttle(requests, seconds=10, times=20)
   >>> while True:
-  >>>     api.get()
+  >>>     r.get('http://www.google.com')
 
 API Reference
 =============
