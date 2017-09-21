@@ -2,6 +2,7 @@ from .context import *
 from .throttled_server import ThrottledServer
 
 import unittest
+import time
 
 
 class ThrottleTestSuite(unittest.TestCase):
@@ -12,6 +13,21 @@ class ThrottleTestSuite(unittest.TestCase):
                        seconds=seconds)
 
         [sut.foo() for i in range(1, 5)]
+
+    def test_given_1_api_when_call_once_every_10ms_with_custom_delay(self):
+        delayed = False
+
+        def delay(seconds):
+            nonlocal delayed
+            delayed = True
+            time.sleep(seconds)
+
+        seconds = 0.001
+        sut = Throttle(ThrottledServer(seconds=seconds),
+                       seconds=seconds, delay=delay)
+
+        [sut.foo() for i in range(1, 5)]
+        self.assertTrue(delayed)
 
     def test_given_1_api_when_call_2_times_in_10ms(self):
         seconds = 0.001
@@ -48,6 +64,25 @@ class ThrottleTestSuite(unittest.TestCase):
             sut = Throttle(ThrottledServer(seconds=seconds),
                            seconds=seconds, aio=True)
             await sut.async_foo()
+
+        self.sync(wrapper())
+
+    def test_given_1_async_api_when_call_once_every_10ms_with_custom_delay(self):
+        async def wrapper():
+            delay_called = False
+
+            async def delay(seconds):
+                nonlocal delay_called
+                delay_called = True
+                await asyncio.sleep(seconds)
+
+            seconds = 0.001
+            sut = Throttle(ThrottledServer(seconds=seconds),
+                           seconds=seconds, aio=True, delay=delay)
+
+            await sut.async_foo()
+
+            self.assertTrue(delay_called)
 
         self.sync(wrapper())
 

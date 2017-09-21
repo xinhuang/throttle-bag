@@ -7,7 +7,7 @@ __version__ = '0.2'
 
 
 class Throttle(object):
-    def __init__(self, obj, seconds, times=1, aio=False, loop=None):
+    def __init__(self, obj, seconds, times=1, aio=False, loop=None, delay=None):
         if asyncio:
             self._loop = loop if loop else asyncio.get_event_loop()
         else:
@@ -16,10 +16,14 @@ class Throttle(object):
         self._seconds = seconds
         self._times = times
         self._calls = []
+        self._custom_delay = delay
 
     def _delay(self, seconds):
         if seconds:
-            time.sleep(seconds)
+            if self._custom_delay:
+                self._custom_delay(seconds)
+            else:
+                time.sleep(seconds)
         if self._times > 1:
             now = datetime.datetime.utcnow().timestamp()
             self._calls.append(now)
@@ -27,7 +31,10 @@ class Throttle(object):
     async def _async_delay(self, seconds):
         assert self._loop
         if seconds:
-            await asyncio.sleep(seconds, self._loop)
+            if self._custom_delay:
+                await self._custom_delay(seconds)
+            else:
+                await asyncio.sleep(seconds, self._loop)
         if self._times > 1:
             now = datetime.datetime.utcnow().timestamp()
             self._calls.append(now)
