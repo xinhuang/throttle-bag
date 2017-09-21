@@ -15,6 +15,7 @@ setup(
     author="Xin Huang",
     author_email="xinhuang.abc@gmail.com",
     url="https://github.com/xinhuang/throttle-bag",
+    py_modules=['throttle_bag'],
     packages=['tests'],
     license="License :: OSI Approved :: MIT License",
     long_description=readme_string,

@@ -2,7 +2,7 @@ import time
 import datetime
 import bisect
 
-__version__ = '0.1'
+__version__ = '0.1.1'
 
 
 class Throttle(object):
