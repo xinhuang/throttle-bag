@@ -3,7 +3,7 @@ import datetime
 import bisect
 import asyncio
 
-__version__ = '0.2'
+__version__ = '0.3'
 
 
 class Throttle(object):
