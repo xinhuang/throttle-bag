@@ -2,6 +2,8 @@ import time
 import datetime
 import bisect
 
+__version__ = '0.1'
+
 
 class Throttle(object):
     def __init__(self, obj, seconds, times=1, *args, **kwargs):
