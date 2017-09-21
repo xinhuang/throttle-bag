@@ -35,3 +35,9 @@ class ThrottledServer(object):
 
     def bar(self):
         return self._check()
+
+    async def async_foo(self):
+        return self._check()
+
+    async def async_bar(self):
+        return self._check()

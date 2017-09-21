@@ -37,7 +37,7 @@ Quick Tutorial
 API Reference
 =============
 
-``Throttle(throttled_object, seconds, times=1)``
+``Throttle(throttled_object, seconds, times=1, aio=False, loop=None)``
   Create a instance of ``Throttle`` to throttle invocations to all methods of throttled_object, according to frequence
   specified.
 
@@ -45,6 +45,8 @@ API Reference
     * ``throttled_object``: The object to be throttled.
     * ``seconds``: Specify throttling interval in seconds.
     * ``times``: Specify how many invocations can be made in given interval.
+    * ``aio``: Whether use ``asyncio.sleep()`` instead of ``time.sleep()``.
+    * ``aio``: The ``EventLoop`` if using asyncio. By default it is ``asyncio.get_event_loop()``.
 
 Licensing
 =========
