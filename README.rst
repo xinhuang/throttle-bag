@@ -42,6 +42,7 @@ API Reference
   specified.
 
   :Args:
+    * ``throttled_object``: The object to be throttled.
     * ``seconds``: Specify throttling interval in seconds.
     * ``times``: Specify how many invocations can be made in given interval.
 
