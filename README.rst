@@ -47,6 +47,8 @@ API Reference
     * ``times``: Specify how many invocations can be made in given interval.
     * ``aio``: Whether use ``asyncio.sleep()`` instead of ``time.sleep()``.
     * ``aio``: The ``EventLoop`` if using asyncio. By default it is ``asyncio.get_event_loop()``.
+    * ``delay``: Custom delay function. For synchronized, it is ``def delay(seconds)``; for asynchronized, it
+      is ``async def delay(seconds)``.
 
 Licensing
 =========
