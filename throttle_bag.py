@@ -10,9 +10,12 @@ class Throttle(object):
         self._times = times
         self._calls = []
 
+    def _delay(self, seconds):
+        time.sleep(seconds)
+
     def __getattr__(self, name):
         if self._times == 1:
-            time.sleep(self._seconds)
+            self._delay(self._seconds)
         else:
             now = datetime.datetime.utcnow().timestamp()
             start_time = now - self._seconds
@@ -20,7 +23,7 @@ class Throttle(object):
             self._calls = self._calls[i:]
             if len(self._calls) >= self._times:
                 wait_time = self._seconds - (now - self._calls[0])
-                time.sleep(wait_time)
+                self._delay(wait_time)
                 now = datetime.datetime.utcnow().timestamp()
             self._calls.append(now)
 
