@@ -44,7 +44,7 @@ API Reference
   :Args:
     * ``throttled_object``: The object to be throttled.
     * ``seconds``: Specify throttling interval in seconds.
-    * ``times``: Specify how many invocations can be made in given interval.
+    * ``times``: Specify how many invocations can be made in the given interval.
     * ``aio``: Whether use ``asyncio.sleep()`` instead of ``time.sleep()``.
     * ``loop``: The ``EventLoop`` if using asyncio. By default it is ``asyncio.get_event_loop()``.
     * ``delay``: Custom delay function. For synchronized, it is ``def delay(seconds)``; for asynchronized, it
