@@ -1,6 +1,8 @@
 ************
 Throttle Bag
 ************
+.. image:: https://img.shields.io/pypi/v/throttle-bag.svg
+    :target: https://pypi.python.org/pypi/throttle-bag
 
 A Python library for API throttling.
 
