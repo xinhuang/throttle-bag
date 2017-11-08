@@ -50,7 +50,7 @@ API Reference
     * ``aio``: Whether use ``asyncio.sleep()`` instead of ``time.sleep()``.
     * ``loop``: The ``EventLoop`` if using asyncio. By default it is ``asyncio.get_event_loop()``.
     * ``delay``: Custom delay function. For synchronized, it is ``def delay(seconds)``; for asynchronized, it
-      is ``async def delay(seconds)``.
+      is ``async def delay(seconds)``. By default ``sleep(seconds)`` and ``asyncio.sleep(seconds)`` will be used.
 
 Licensing
 =========
